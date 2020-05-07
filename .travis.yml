@@ -3,7 +3,7 @@ services:
     - docker
 
 before_install:
-    - docker build -t mybuild -f Dockerfile.dev .\
+    - docker build -t mybuild -f Dockerfile.dev .
 
 script:
     - docker run -e CI=true mybuild npm run test -- --coverage
