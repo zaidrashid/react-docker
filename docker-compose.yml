@@ -1,0 +1,24 @@
+# docker compose version
+version: '3' 
+# what to do
+# services is like a a type of container
+services:
+    react-dockerized:
+        build:
+            context: .
+            dockerfile: Dockerfile.dev
+        ports:
+            - "3000:3000"
+        volumes:
+            - /app/node_modules
+            - .:/app
+        stdin_open: true
+    tests:
+        build:
+            context: .
+            dockerfile: Dockerfile.dev
+        volumes:
+            - /app/node_modules
+            - .:/app
+        stdin_open: true
+        command: ["npm", "run", "test"]
