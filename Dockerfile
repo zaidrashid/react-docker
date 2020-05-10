@@ -14,4 +14,5 @@ RUN npm run build
 # does not need to mention stage
 # as FROM is terminating the previous one
 FROM nginx
+EXPOSE 80
 COPY --from=builder /app/build /usr/share/nginx/html
