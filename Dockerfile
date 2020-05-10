@@ -3,7 +3,7 @@ FROM node:alpine as builder
 # set workdirectory
 WORKDIR /app
 # copy package.json first
-COPY ./package.json ./ 
+COPY ./package*.json ./ 
 # download, install dependencies
 RUN npm install
 # then copy the rest
@@ -15,4 +15,4 @@ RUN npm run build
 # as FROM is terminating the previous one
 FROM nginx
 EXPOSE 80
-COPY --from=builder /app/build /usr/share/nginx/html
+COPY --from=0 /app/build /usr/share/nginx/html
